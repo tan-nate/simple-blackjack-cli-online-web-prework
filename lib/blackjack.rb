@@ -22,8 +22,7 @@ end
 
 def get_user_input
   # code #get_user_input here
-  input = gets.chomp
-  input
+  gets.chomp
 end
 
 def end_game(card_total)
@@ -44,14 +43,15 @@ end
 def hit?(card_total)
   # code hit? here
   prompt_user
-  input2 = get_user_input
-  if input2 == "s"
+  input = get_user_input
+  if input == "s"
     card_total = card_total
-  elsif input2 == "h"
+  elsif input == "h"
     card_total += deal_card
   else
     invalid_command
   end
+  card_total
 end
 
 #####################################################
@@ -64,7 +64,7 @@ def runner
   initial_round
   card_total = initial_round
   until card_total >= 21
-    hit?(card_total)
+    card_total = hit?(card_total)
   end
+  end_game(card_total)
 end
-runner
